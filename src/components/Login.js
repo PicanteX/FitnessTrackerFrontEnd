@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { fetchLoginResults } from "../api/users";
+import { fetchLoginResults } from "../api";
 
 const Login = ({ setToken }) => {
   const [username, setUsername] = useState("");
