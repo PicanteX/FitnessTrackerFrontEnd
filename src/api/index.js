@@ -37,14 +37,36 @@ export const fetchLoginResults = async (username, password) => {
 
 export const fetchUserData = async () => {
   const response = await fetch(`${BASE_URL}/api/users/me`, {
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer TOKEN_STRING_HERE'
-    },
-  }).then(response => response.json())
-    .then(result => {
-      console.log(result);
-    })
-    .catch(console.error);
-  }
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': 'Bearer TOKEN_STRING_HERE'
+  },
+}).then(response => response.json())
+  .then(result => {
+    console.log(result);
+  })
+  .catch(console.error);
+};
 
+export const newActivity = async (
+  name,
+  description
+) => {
+  const result = await fetch(`${BASE_URL}/api$/activities`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+    body: JSON.stringify({
+      post: {
+        name,
+        description
+      },
+    }),
+  });
+  const data = await result.json();
+  console.log(data, "data");
+
+  return data;
+};
