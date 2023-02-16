@@ -35,11 +35,11 @@ export const fetchLoginResults = async (username, password) => {
     return data;
   };
 
-export const fetchUserData = async () => {
+export const fetchUserData = async (token) => {
   const response = await fetch(`${BASE_URL}/api/users/me`, {
   headers: {
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer TOKEN_STRING_HERE'
+    'Authorization': `Bearer ${token}`
   },
 }).then(response => response.json())
   .then(result => {
@@ -52,11 +52,12 @@ export const newActivity = async (
   name,
   description
 ) => {
+  const token = localStorage.getItem('token')
   const result = await fetch(`${BASE_URL}/api$/activities`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
+      'Authorization': `Bearer ${token}`,
     },
     body: JSON.stringify({
       post: {
@@ -70,3 +71,7 @@ export const newActivity = async (
 
   return data;
 };
+
+export const registerUser = async () => {
+  return "tada"
+}

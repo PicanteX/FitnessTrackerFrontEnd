@@ -1,3 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-const createdActivity = ({token, })
+const createdActivity = (props) => {
+  
+}
