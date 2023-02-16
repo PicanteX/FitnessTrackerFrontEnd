@@ -35,11 +35,11 @@ export const fetchLoginResults = async (username, password) => {
     return data;
   };
 
-export const fetchUserData = async () => {
+export const fetchUserData = async (token) => {
   const response = await fetch(`${BASE_URL}/api/users/me`, {
   headers: {
     'Content-Type': 'application/json',
-    'Authorization': 'Bearer TOKEN_STRING_HERE'
+    'Authorization': `Bearer ${token}`
   },
 }).then(response => response.json())
   .then(result => {
@@ -48,25 +48,29 @@ export const fetchUserData = async () => {
   .catch(console.error);
 };
 
-export const newActivity = async (
-  name,
-  description
-) => {
-  const result = await fetch(`${BASE_URL}/api$/activities`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({
-      post: {
-        name,
-        description
-      },
-    }),
-  });
-  const data = await result.json();
-  console.log(data, "data");
+// export const newActivity = async (
+//   name,
+//   description
+// ) => {
+//   const result = await fetch(`${BASE_URL}/api$/activities`, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//       'Authorization': `Bearer ${token}`,
+//     },
+//     body: JSON.stringify({
+//       post: {
+//         name,
+//         description
+//       },
+//     }),
+//   });
+//   const data = await result.json();
+//   console.log(data, "data");
 
-  return data;
-};
+//   return data;
+// };
+
+export const registerUser = async () => {
+  return "tada"
+}
