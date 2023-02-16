@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
+import { useEffect, useState } from 'react';
+// import App from './App';
+import {Route, Routes, BrowserRouter} from "react-router-dom"
 
 import {
   Activities,
@@ -10,28 +12,57 @@ import {
   MyRoutines,
   Register,
   Routines,
-} from "./Components"
+} from "./components"
+import { fetchUserData } from './api';
+
+const App = () => {
+
 
 
 
 const [token, setToken] = useState("");
 const [isLoggedIn, setIsLoggedIn] = useState(false);
+const [activities, setActivities] = useState([]);
 
-useEffect(async () => {
+useEffect(() => {
+  fetchUser();
+  }, []);
+
+  async function fetchUser() {
     const savedToken = localStorage.getItem(token)
     if (savedToken) {
         setToken(savedToken);
         setIsLoggedIn(true);
         const userData = await fetchUserData (savedToken);
-    };
-  }, []);
+        console.log(userData);
+    };}
 
+  return (
+      <BrowserRouter>
+        <Routes>
+          <Route
+            exact
+            path="/api/activities"
+            element={
+              <Activities
+                activities={activities}
+                setActivities={setActivities}
+              />
+            }
+          />
+          
+        </Routes>
+      </BrowserRouter>
+    );
+  };
+  
 
 
   const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <App />
+
   </React.StrictMode>
 );
 
