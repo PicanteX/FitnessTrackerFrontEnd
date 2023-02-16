@@ -33,7 +33,7 @@ const Activities =(props) => {
             </nav> */}
             <ul>{
                 activities.map((activity) => {
-                    return (<li>
+                    return (<li key={activity.name}>
                         <p>{activity.name}</p>
                         <p>{activity.description}</p>
                     </li> )

@@ -40,6 +40,13 @@ useEffect(() => {
   return (
       <BrowserRouter>
         <Routes>
+        <Route
+            exact
+            path="/"
+            element={
+              <Home />
+            }
+          />
           <Route
             exact
             path="/api/activities"
