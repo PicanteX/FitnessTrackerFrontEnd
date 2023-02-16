@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { ReactDOM } from "react-dom";
 // import { useSearchParams } from "react-router-dom";
-export const BASE_URL = "http://fitnesstrac-kr.herokuapp.com";
+const BASE_URL = "http://fitnesstrac-kr.herokuapp.com";
 
 const Activities =(props) => {
     const { activities, setActivities } = props;
