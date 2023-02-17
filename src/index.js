@@ -23,6 +23,7 @@ const App = () => {
 const [token, setToken] = useState("");
 const [isLoggedIn, setIsLoggedIn] = useState(false);
 const [activities, setActivities] = useState([]);
+const [routines, setRoutines] = useState([]);
 
 useEffect(() => {
   fetchUser();
@@ -57,6 +58,33 @@ useEffect(() => {
               />
             }
           />
+           <Route
+            exact
+            path="/api/routines"
+            element={
+              <Routines
+                activities={activities}
+                setActivities={setActivities}
+                routines={routines}
+                setRoutines={setRoutines}
+                isLoggedIn={isLoggedIn}
+                setIsLoggedIn = {setIsLoggedIn}
+              />
+            }/>
+           <Route
+            exact
+            path="/api/activities/:activityid/routines"
+            element={
+              <Routines
+                activities={activities}
+                setActivities={setActivities}
+                routines={routines}
+                setRoutines={setRoutines}
+                isLoggedIn={isLoggedIn}
+                setIsLoggedIn = {setIsLoggedIn}
+              />
+            }
+          />         
           
         </Routes>
       </BrowserRouter>

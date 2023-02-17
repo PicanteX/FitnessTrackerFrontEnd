@@ -15,6 +15,7 @@ const Routines =(props) => {
             const result = await response.json();
             if (result.error) throw result.error;
             setRoutines(result);
+            console.log(result)
         } catch (error) {
             throw error
         }
@@ -44,19 +45,22 @@ const Routines =(props) => {
             <ul>{
                 routines.map((routine) => {
                     return (<li key={routine.name}>
-                        <p>{routine.name}</p>
-                        <p>{routine.goal}</p>
-                        <p>{routine.creatorId}</p>
+                        <p>Routine: {routine.name}</p>
+                        <p>Goal: {routine.goal}</p>
+                        <p>Creator: {routine.creatorId}</p>
 
                         {routine.activities.map((activity) => {
                              return (
-                                <div key={activity.id}>
-                                    <p>Activity: </p>
-                                            const routinesWithActivity = fetchPublicRoutinesByActivity(activity.id)
-                                            fetchRoutines(routinesWithActivity);
-                                        }
-                </li> )
-                })} 
+                                <div key={activity.id} id={activity.id}>
+                                    <p><b>Activity:</b> <Link to={`/api/activities/${activity.id}/routines`} onClick={(event) => {
+                                        event.preventDefault();
+                                        const routinesWithActivity = fetchPublicRoutinesByActivity(activity.id)
+                                        fetchRoutines(routinesWithActivity)}}>                                      
+                                        {activity.name}</Link></p>
+                                    <b>Description: {activity.description}</b>
+                                    <p>Duration: {activity.duration}</p>
+                                    <p>Count: {activity.count}</p></div>
+                )})} 
                     </li> )
                 })}
             </ul>
