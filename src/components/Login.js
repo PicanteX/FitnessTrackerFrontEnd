@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import { fetchLoginResults } from "../api";
 
-const Login = ({ props:any }) => {
-  const {token,isLoggedIn,setToken,setIsLoggedIn,username,} =props;
+const Login = ({ setToken }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
@@ -11,10 +10,12 @@ const Login = ({ props:any }) => {
 
     try {
       const result = await fetchLoginResults(username, password);
+      console.log(result);
       if (result.success) {
         localStorage.setItem("token", result.data.token);
         localStorage.setItem("username", username);
         setToken(result.data.token);
+        setIsLoggedIn(true);
       }
     } catch (error) {
       console.error("Error: ", error);
