@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { useEffect, useState } from 'react';
 // import App from './App';
-import {Route, Routes, BrowserRouter, NavLink, Link} from "react-router-dom"
+import {Route, Routes, BrowserRouter, NavLink, Link, useNavigate} from "react-router-dom"
 
 import {
   Activities,
@@ -15,9 +15,9 @@ import {
 } from "./components"
 import { fetchUserData } from './api';
 
+
+
 const App = () => {
-
-
 
 
 const [token, setToken] = useState("");
@@ -44,13 +44,13 @@ useEffect(() => {
       <BrowserRouter>
         <nav>
           <div>
-            <NavLink to='/'>Home</NavLink>
-            <NavLink to='/api/activities'>Activities</NavLink>
-            <NavLink to='/api/routines'>Routines</NavLink>
+            <NavLink as={Link} to='/'>Home</NavLink>
+            <NavLink as={Link} to='/api/activities'>Activities</NavLink>
+            <NavLink as={Link} to='/api/routines'>Routines</NavLink>
             {
               isLoggedIn ? <button>Log Out</button> : <div>
-                <button><Link to='/login'>Log In</Link></button>
-                <button><Link to='/register'>Sign Up</Link></button>
+                <button><NavLink as={Link} to='/login'>Log In</NavLink></button>
+                <button><NavLink as={Link} to='/register'>Sign Up</NavLink></button>
                 </div>
                
                
@@ -104,6 +104,7 @@ useEffect(() => {
               <Activities
                 activities={activities}
                 setActivities={setActivities}
+                isLoggedIn={isLoggedIn}
               />
             }
           />
