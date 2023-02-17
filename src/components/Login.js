@@ -1,9 +1,10 @@
 import React, { useState } from "react";
 import { fetchLoginResults } from "../api";
 
-const Login = ({ setToken }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+const Login = (props) => {
+  const { token, isLoggedIn, setToken, setIsLoggedIn, username, setUsername, password, setPassword} = props;
+  // const [username, setUsername] = useState("");
+  // const [password, setPassword] = useState("");
 
   const userSubmit = async (event) => {
     event.preventDefault();

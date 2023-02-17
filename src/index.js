@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { useEffect, useState } from 'react';
 // import App from './App';
-import {Route, Routes, BrowserRouter} from "react-router-dom"
+import {Route, Routes, BrowserRouter, NavLink, Link} from "react-router-dom"
 
 import {
   Activities,
@@ -24,6 +24,8 @@ const [token, setToken] = useState("");
 const [isLoggedIn, setIsLoggedIn] = useState(false);
 const [activities, setActivities] = useState([]);
 const [routines, setRoutines] = useState([]);
+const [username, setUsername] = useState("");
+const [password, setPassword] = useState("");
 
 useEffect(() => {
   fetchUser();
@@ -40,12 +42,59 @@ useEffect(() => {
 
   return (
       <BrowserRouter>
+        <nav>
+          <div>
+            <NavLink to='/'>Home</NavLink>
+            <NavLink to='/api/activities'>Activities</NavLink>
+            <NavLink to='/api/routines'>Routines</NavLink>
+            {
+              isLoggedIn ? <button>Log Out</button> : <div>
+                <button><Link to='/login'>Log In</Link></button>
+                <button><Link to='/register'>Sign Up</Link></button>
+                </div>
+               
+               
+            }
+          </div>
+        </nav>
         <Routes>
         <Route
             exact
             path="/"
             element={
               <Home />
+            }
+          />
+        <Route
+            exact
+            path="/login"
+            element={
+              <Login 
+                username={username}
+                setUsername={setUsername}
+                password={password}
+                setPassword={setPassword}
+                token={token}
+                setToken={setToken}
+                isLoggedIn={isLoggedIn}
+                setIsLoggedIn={setIsLoggedIn}
+              />
+            }
+          />
+          <Route
+            exact
+            path="/register"
+            element={
+              <Register 
+                username={username}
+                setUsername={setUsername}
+                password={password}
+                setPassword={setPassword}
+                token={token}
+                setToken={setToken}
+                isLoggedIn={isLoggedIn}
+                setIsLoggedIn={setIsLoggedIn}
+              />
             }
           />
           <Route
