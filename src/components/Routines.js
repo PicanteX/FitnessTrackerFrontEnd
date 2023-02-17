@@ -39,8 +39,7 @@ const Routines =(props) => {
           throw error;
         };
       };
-    //   const routinesWithActivity = fetchPublicRoutinesByActivity(activity.id)
-    //   fetchRoutines(routinesWithActivity);
+
     return (<>
         <h1>Routines List</h1>
             <ul>{
@@ -52,8 +51,12 @@ const Routines =(props) => {
 
                         {routine.activities.map((activity) => {
                              return (
-                                <div key={activity.id}>
-                                    <p><b>Activity:</b> {activity.name}</p>
+                                <div key={activity.id} id={activity.id}>
+                                    <p><b>Activity:</b> <Link to={`/api/activities/${activity.id}/routines`} onClick={(event) => {
+                                        event.preventDefault();
+                                        const routinesWithActivity = fetchPublicRoutinesByActivity(activity.id)
+                                        fetchRoutines(routinesWithActivity)}}>                                      
+                                        {activity.name}</Link></p>
                                     <b>Description: {activity.description}</b>
                                     <p>Duration: {activity.duration}</p>
                                     <p>Count: {activity.count}</p></div>

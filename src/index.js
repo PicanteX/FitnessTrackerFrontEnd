@@ -60,6 +60,19 @@ useEffect(() => {
           />
            <Route
             exact
+            path="/api/routines"
+            element={
+              <Routines
+                activities={activities}
+                setActivities={setActivities}
+                routines={routines}
+                setRoutines={setRoutines}
+                isLoggedIn={isLoggedIn}
+                setIsLoggedIn = {setIsLoggedIn}
+              />
+            }/>
+           <Route
+            exact
             path="/api/activities/:activityid/routines"
             element={
               <Routines
