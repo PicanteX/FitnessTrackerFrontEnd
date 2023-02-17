@@ -15,6 +15,7 @@ const Routines =(props) => {
             const result = await response.json();
             if (result.error) throw result.error;
             setRoutines(result);
+            console.log(result)
         } catch (error) {
             throw error
         }
@@ -38,25 +39,25 @@ const Routines =(props) => {
           throw error;
         };
       };
-
+    //   const routinesWithActivity = fetchPublicRoutinesByActivity(activity.id)
+    //   fetchRoutines(routinesWithActivity);
     return (<>
         <h1>Routines List</h1>
             <ul>{
                 routines.map((routine) => {
                     return (<li key={routine.name}>
-                        <p>{routine.name}</p>
-                        <p>{routine.goal}</p>
-                        <p>{routine.creatorId}</p>
+                        <p>Routine: {routine.name}</p>
+                        <p>Goal: {routine.goal}</p>
+                        <p>Creator: {routine.creatorId}</p>
 
                         {routine.activities.map((activity) => {
                              return (
                                 <div key={activity.id}>
-                                    <p>Activity: </p>
-                                            const routinesWithActivity = fetchPublicRoutinesByActivity(activity.id)
-                                            fetchRoutines(routinesWithActivity);
-                                        }
-                </li> )
-                })} 
+                                    <p><b>Activity:</b> {activity.name}</p>
+                                    <b>Description: {activity.description}</b>
+                                    <p>Duration: {activity.duration}</p>
+                                    <p>Count: {activity.count}</p></div>
+                )})} 
                     </li> )
                 })}
             </ul>
