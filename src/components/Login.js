@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { fetchLoginResults } from "../api";
 
-const Login = ({ setToken }) => {
+const Login = ({ props:any }) => {
+  const {token,isLoggedIn,setToken,setIsLoggedIn,username,} =props;
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
