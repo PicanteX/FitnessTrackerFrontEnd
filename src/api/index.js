@@ -7,13 +7,12 @@ export const fetchRegisterResults = async (username, password) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      user: {
         username,
-        password,
-      },
+        password
     }),
   });
   const data = await response.json();
+  console.log(data);
   return data;
 };
 
@@ -25,10 +24,8 @@ export const fetchLoginResults = async (username, password) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        user: {
           username,
           password,
-        },
       }),
     });
     const data = await response.json();
@@ -72,6 +69,3 @@ export const newActivity = async (
   return data;
 };
 
-export const registerUser = async () => {
-  return "tada"
-}
