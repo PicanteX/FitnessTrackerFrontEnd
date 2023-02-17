@@ -1,17 +1,16 @@
 import React, { useState } from "react";
-import { registerUser } from "../api";
+import { fetchRegisterResults } from "../api";
 
-const SignUp = ({ setToken }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+const SignUp = (props) => {
+  const { token, isLoggedIn, setToken, setIsLoggedIn, username, setUsername, password, setPassword} = props;
   
   const userSubmit = async (event) => {
     event.preventDefault();
-
     try {
-      const result = await registerUser(username, password);
+      const result = await fetchRegisterResults(username, password);
       if (result.success) {
-        localStorage.getItem("token", result.data.token);
+        localStorage.setItem("token", result.data.token);
+
         console.log(result);
         setToken(result.data.token);
       }

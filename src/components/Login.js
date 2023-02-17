@@ -11,10 +11,12 @@ const Login = (props) => {
 
     try {
       const result = await fetchLoginResults(username, password);
+      console.log(result);
       if (result.success) {
         localStorage.setItem("token", result.data.token);
         localStorage.setItem("username", username);
         setToken(result.data.token);
+        setIsLoggedIn(true);
       }
     } catch (error) {
       console.error("Error: ", error);
