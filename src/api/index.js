@@ -45,25 +45,25 @@ export const fetchUserData = async (token) => {
   .catch(console.error);
 };
 
-export const newActivity = async (
-  name,
-  description
-) => {
-  const token = localStorage.getItem('token')
-  const result = await fetch(`${BASE_URL}/api/activities`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      'Authorization': `Bearer ${token}`,
-    },
-    body: JSON.stringify({
-        name,
-        description
-    }),
-  });
-  const data = await result.json();
-  console.log(data);
+// export const newActivity = async (
+//   name,
+//   description
+// ) => {
+//   const token = localStorage.getItem('token')
+//   const result = await fetch(`${BASE_URL}/api/activities`, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//       'Authorization': `Bearer ${token}`,
+//     },
+//     body: JSON.stringify({
+//         name,
+//         description
+//     }),
+//   });
+//   const data = await result.json();
+//   console.log(data);
 
-  return data;
-};
+//   return data;
+// };
 
