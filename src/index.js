@@ -4,7 +4,7 @@ import './index.css';
 import { useEffect, useState } from 'react';
 // import App from './App';
 import {Route, Routes, BrowserRouter, Link, useNavigate} from "react-router-dom"
-
+import "./index.css";
 import {
   Activities,
   Home,
@@ -43,13 +43,14 @@ useEffect(() => {
 
   return (
       <BrowserRouter>
-          <header>
+          <header className="headerContainer">
+            <h1 className="fitnessTitle">Fitness Tracker</h1>
             <Link to='/home'>Home</Link>
             <Link to='/activities'>Activities</Link>
             <Link to='/routines'>Routines</Link>
             {
               isLoggedIn ? <button>Log Out</button> : <div>
-                <button><Link to='/login'>Log In</Link></button>
+                <button><Link to='/'>Log In</Link></button>
                 <button><Link to='/register'>Sign Up</Link></button>
                 </div>  
             }
@@ -64,7 +65,7 @@ useEffect(() => {
           />
         <Route
             exact
-            path="/login"
+            path="/"
             element={
               <Login 
                 username={username}
