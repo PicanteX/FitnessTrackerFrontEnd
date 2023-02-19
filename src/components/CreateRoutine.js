@@ -8,7 +8,7 @@ const CreateRoutine = (props) => {
       async function createRoutine() {
             try {
 
-                  const response = await fetch(`${BASE_URL}/routines`, {
+                  const response = await fetch(`${BASE_URL}/api/routines`, {
                         method: "POST",
                         headers: {
                               "Content-Type": "application/json",
@@ -42,8 +42,6 @@ const CreateRoutine = (props) => {
                               onChange={(event) => setName(event.target.value)} />
                         <input className="inputfield" placeholder="enter Routine goal here"
                               onChange={(event) => setGoal(event.target.value)} />
-
-                        <Link to="/myroutines"><button className="routineButton" onClick={createRoutine}>Create</button></Link>
                   </div>
             </form>
       );

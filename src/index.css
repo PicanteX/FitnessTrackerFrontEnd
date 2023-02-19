@@ -13,6 +13,7 @@ code {
 }
 .fitnessTitle {
   color:white;
+  text-align: center;
 }
 
 header {
@@ -23,11 +24,22 @@ header {
 }
 .headerLinks {
   display: grid;
-  grid-template-columns: 30vw 10vw 10vw 10vw 10vw;
-  background-color: green
+  justify-items: right;
+  grid-template-columns: 12vw 12vw 12vw 12vw 15vw;
+  background-color: green;
+  align-items: center;
 }
 
 a {
   text-align: center;
   vertical-align: middle;
+  color: white;
 }
+.loginButton {
+  background-color: black;
+  padding: 3px;
+  margin-left: 3px;
+}
+span {
+  display: flex;
+flex-direction: row;} 
