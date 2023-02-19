@@ -4,6 +4,11 @@ import { fetchLoginResults } from "../api";
 
 const navigate = useNavigate();
 
+const Login = (props) => {
+  const { token, setToken, username, setUsername, password, setPassword} = props;
+  // const [username, setUsername] = useState("");
+  // const [password, setPassword] = useState("");
+
   const userSubmit = async (event) => {
     event.preventDefault();
 
