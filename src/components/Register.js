@@ -8,11 +8,11 @@ const SignUp = (props) => {
     event.preventDefault();
     try {
       const result = await fetchRegisterResults(username, password);
-      if (result.success) {
-        localStorage.setItem("token", result.data.token);
+      if (result.message === "you're signed up!") {
+        localStorage.setItem("token", result.token);
 
         console.log(result);
-        setToken(result.data.token);
+        setToken(result.token);
       }
     } catch (error) {
       console.error("Error: ", error);

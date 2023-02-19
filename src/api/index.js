@@ -50,21 +50,19 @@ export const newActivity = async (
   description
 ) => {
   const token = localStorage.getItem('token')
-  const result = await fetch(`${BASE_URL}/api$/activities`, {
+  const result = await fetch(`${BASE_URL}/api/activities`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
       'Authorization': `Bearer ${token}`,
     },
     body: JSON.stringify({
-      post: {
         name,
         description
-      },
     }),
   });
   const data = await result.json();
-  console.log(data, "data");
+  console.log(data);
 
   return data;
 };
