@@ -12,7 +12,8 @@ import {
   MyRoutines,
   Register,
   Routines,
-  CreateActivity
+  CreateActivity,
+  CreateRoutine
 } from "./components"
 import { fetchUserData } from './api';
 export const TOKEN_STORAGE_KEY = "user-token";
@@ -28,6 +29,7 @@ const [username, setUsername] = useState("");
 const [password, setPassword] = useState("");
 const [goal, setGoal] = useState("");
 const [name, setName] = useState("");
+const [user, setUser] = useState("");
 
 // async function fetchUser() {
 //   const savedToken = localStorage.getItem(token)
@@ -50,10 +52,12 @@ const [name, setName] = useState("");
                 <Link to='/home'>Home</Link>
                 <Link to='/activities'>Activities</Link>
                 <Link to='/routines'>Routines</Link>
+                <Link to='/myroutines'>My Routines</Link>
               {
-              isLoggedIn ? <button>Log Out</button> : <div>
-                <button><Link to='/'>Log In</Link></button>
-                <button><Link to='/register'>Sign Up</Link></button>
+              token ?
+               <button>Log Out</button> : <div>
+                <span><button className="loginButton"><Link to='/'>Log In</Link></button>
+                <button className="loginButton"><Link to='/register'>Sign Up</Link></button></span>
                 </div> 
             }
                 </div>
@@ -121,7 +125,28 @@ const [name, setName] = useState("");
                 setRoutines={setRoutines}
                 isLoggedIn={isLoggedIn}
                 setIsLoggedIn = {setIsLoggedIn}
+                token={token}
               />
+              
+            }/>
+
+          <Route
+            exact
+            path="/myroutines"
+            element={
+              <MyRoutines
+                activities={activities}
+                setActivities={setActivities}
+                routines={routines}
+                setRoutines={setRoutines}
+                isLoggedIn={isLoggedIn}
+                setIsLoggedIn = {setIsLoggedIn}
+                user = {user}
+                setUser = {setUsername}
+                token={token}
+                setToken={setToken}
+              />
+             
             }/>
            <Route
             exact
@@ -134,11 +159,12 @@ const [name, setName] = useState("");
                 setRoutines={setRoutines}
                 isLoggedIn={isLoggedIn}
                 setIsLoggedIn = {setIsLoggedIn}
+                token={token}
               />
             }/>
 
-          {/* <Route exact path="/createactivity">
-            <CreateActivity
+          <Route exact path="/createactivity"
+            element={<CreateActivity
                   activities={activities}
                   setActivities={setActivities}
                   token={token}
@@ -146,7 +172,18 @@ const [name, setName] = useState("");
                   isLoggedIn={isLoggedIn}
                   setIsLoggedIn={setIsLoggedIn}
              />
-          </Route>        */}
+            }/>     
+
+          {/* <Route exact path="/createroutine"
+            element={<CreateRoutine
+                  activities={activities}
+                  setActivities={setActivities}
+                  token={token}
+                  setToken={setToken}
+                  isLoggedIn={isLoggedIn}
+                  setIsLoggedIn={setIsLoggedIn}
+             />
+            }/>     */}
           
         </Routes>
       </BrowserRouter>
