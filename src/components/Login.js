@@ -20,7 +20,7 @@ const navigate = useNavigate();
         localStorage.setItem("username", username);
         setToken(result.token);
         setIsLoggedIn(true);
-        navigate('/')
+        navigate('/home')
         
       }
     } catch (error) {

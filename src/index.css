@@ -11,10 +11,23 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.fitnessTitle {
+  color:white;
+}
 
-.headerContainer {
+header {
+  display: flex;
+  flex-direction: row;
+  background-color: green;
+  vertical-align: middle;
+}
+.headerLinks {
   display: grid;
-  grid-template-columns: 30% 8% 8% 20% 20%;
-  padding-top: 5vh;
+  grid-template-columns: 30vw 10vw 10vw 10vw 10vw;
   background-color: green
+}
+
+a {
+  text-align: center;
+  vertical-align: middle;
 }

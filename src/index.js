@@ -15,45 +15,48 @@ import {
   CreateActivity
 } from "./components"
 import { fetchUserData } from './api';
-
-
+export const TOKEN_STORAGE_KEY = "user-token";
+const savedToken = localStorage.getItem(TOKEN_STORAGE_KEY)
 
 const App = () => {
 
-
-const [token, setToken] = useState("");
+const [token, setToken] = useState(savedToken);
 const [isLoggedIn, setIsLoggedIn] = useState(false);
 const [activities, setActivities] = useState([]);
 const [routines, setRoutines] = useState([]);
 const [username, setUsername] = useState("");
 const [password, setPassword] = useState("");
+const [goal, setGoal] = useState("");
+const [name, setName] = useState("");
 
-async function fetchUser() {
-  const savedToken = localStorage.getItem(token)
-  if (savedToken) {
-      setToken(savedToken);
-      setIsLoggedIn(true);
-      const userData = await fetchUserData (savedToken);
-      console.log(userData);
-  };}
+// async function fetchUser() {
+//   const savedToken = localStorage.getItem(token)
+//   if (savedToken) {
+//       setToken(savedToken);
+//       setIsLoggedIn(true);
+//       const userData = await fetchUserData (savedToken);
+//       console.log(userData);
+//   };}
 
-useEffect(() => {
-  fetchUser();
-  }, []);
+// useEffect(() => {
+//   fetchUser();
+//   }, []);
 
   return (
       <BrowserRouter>
           <header className="headerContainer">
             <h1 className="fitnessTitle">Fitness Tracker</h1>
-            <Link to='/home'>Home</Link>
-            <Link to='/activities'>Activities</Link>
-            <Link to='/routines'>Routines</Link>
-            {
+              <div className="headerLinks">
+                <Link to='/home'>Home</Link>
+                <Link to='/activities'>Activities</Link>
+                <Link to='/routines'>Routines</Link>
+              {
               isLoggedIn ? <button>Log Out</button> : <div>
                 <button><Link to='/'>Log In</Link></button>
                 <button><Link to='/register'>Sign Up</Link></button>
-                </div>  
+                </div> 
             }
+                </div>
           </header>
         <Routes>
         <Route
@@ -97,18 +100,19 @@ useEffect(() => {
           />
           <Route
             exact
-            path="activities"
+            path="/activities"
             element={
               <Activities
                 activities={activities}
                 setActivities={setActivities}
                 isLoggedIn={isLoggedIn}
+                token = {token}
               />
             }
           />
            <Route
             exact
-            path="routines"
+            path="/routines"
             element={
               <Routines
                 activities={activities}
@@ -134,7 +138,14 @@ useEffect(() => {
             }/>
 
           {/* <Route exact path="/createactivity">
-            <CreateActivity />
+            <CreateActivity
+                  activities={activities}
+                  setActivities={setActivities}
+                  token={token}
+                  setToken={setToken}
+                  isLoggedIn={isLoggedIn}
+                  setIsLoggedIn={setIsLoggedIn}
+             />
           </Route>        */}
           
         </Routes>
