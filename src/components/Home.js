@@ -15,7 +15,6 @@ const Home = () => {
       >
         Welcome to Fitness Tracker
       </h2>
-      <Posts />
     </div>
   );
 };
