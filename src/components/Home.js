@@ -1,7 +1,5 @@
-<<<<<<< HEAD
 import React from 'react';
 
-import Posts from './Posts';
 const Home = () => {
   return (
     <div>
@@ -22,18 +20,17 @@ const Home = () => {
   );
 };
 export default Home;
-=======
-import React from "react";
 
-const Home = (props) => {
-const accountUsername=props.accountUsername
+// import React from "react";
 
-  return (
-    <div>
-      <h1>Welcome to Fitness Track.r, thank you for logging in {accountUsername}</h1>
-    </div>
-  )
-}
+// const Home = (props) => {
+// const accountUsername=props.accountUsername
 
-export default Home;
->>>>>>> fdc32275d2f114acb143d0947ef44234cb6e0ba8
+//   return (
+//     <div>
+//       <h1>Welcome to Fitness Track.r, thank you for logging in {accountUsername}</h1>
+//     </div>
+//   )
+// }
+
+// export default Home;
