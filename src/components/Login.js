@@ -2,11 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchLoginResults } from "../api";
 
-const Login = (props) => {
-  const { token, setToken, username, setUsername, password, setPassword} = props;
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
-
 const navigate = useNavigate();
 
   const userSubmit = async (event) => {
