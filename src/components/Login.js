@@ -4,9 +4,9 @@ import { fetchLoginResults } from "../api";
 
 const Login = (props) => {
   const { token, setToken, username, setUsername, password, setPassword} = props;
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
+  
   const userSubmit = async (event) => {
     event.preventDefault();
 
@@ -14,8 +14,8 @@ const Login = (props) => {
       const result = await fetchLoginResults(username, password);
       console.log(result);
       if (result.message === "you're logged in!") {
-        localStorage.setItem("user-token", result.token);
-        localStorage.setItem("user-username", username);
+        // localStorage.setItem("user-token", result.token);
+        // localStorage.setItem("user-username", username);
         setToken(result.token);
         // setIsLoggedIn(true);
         navigate('/home')
