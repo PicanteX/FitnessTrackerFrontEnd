@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import "./Routines.css";
 const BASE_URL = "http://fitnesstrac-kr.herokuapp.com";
 
 const Routines =(props) => {
@@ -41,11 +42,11 @@ const Routines =(props) => {
       };
 
     return (<>
-        <h1>Routines List</h1>
-            <ul>{
+        <h1 className="pageTitle">Routines List</h1>
+            <ul className="routineContainer">{
                 routines.map((routine) => {
-                    return (<li key={routine.name}>
-                        <p>Routine: {routine.name}</p>
+                    return (<li className = "singleRoutine"key={routine.name}>
+                        <p>{routine.name}</p>
                         <p>Goal: {routine.goal}</p>
                         <p>Creator: {routine.creatorId}</p>
 

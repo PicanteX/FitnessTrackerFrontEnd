@@ -11,3 +11,10 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.headerContainer {
+  display: grid;
+  grid-template-columns: 30% 8% 8% 20% 20%;
+  padding-top: 5vh;
+  background-color: green
+}
