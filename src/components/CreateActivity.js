@@ -3,29 +3,26 @@ import { Link } from "react-router-dom";
 const BASE_URL = "http://fitnesstrac-kr.herokuapp.com";
 
 const CreateActivity = (props) => {
-      const token = props.token;
-      const [description, setDescription] = useState('');
-      const [name, setName] = useState('');
+      const { token, name , setName, description, setDescription }= props;
 
       async function createActivity() {
             try {
-
-                  const response = await fetch(`${BASE_URL}/activities`, {
+                  const response = await fetch(`${BASE_URL}/api/activities`, {
                         method: "POST",
                         headers: {
                               "Content-Type": "application/json",
-                              "Authorization": `Bearer ${token}`,
+                              Authorization: `Bearer ${token}`,
                         },
                         body: JSON.stringify({
-                              name: name,
-                              description: description
+                              name,
+                              description
                         }),
                   }
                   );
 
-                  const resultError = await response.json();
-                  if (resultError.error) {
-                        alert(resultError.error);
+                  const result = await response.json();
+                  if (result.error) {
+                        alert(result.error);
                   }
             } catch (error) {
                   console.error(error);

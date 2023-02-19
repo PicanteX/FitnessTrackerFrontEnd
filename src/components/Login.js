@@ -2,10 +2,6 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { fetchLoginResults } from "../api";
 
-const Login = ({ setToken }) => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
 const navigate = useNavigate();
 
   const userSubmit = async (event) => {
@@ -15,10 +11,10 @@ const navigate = useNavigate();
       const result = await fetchLoginResults(username, password);
       console.log(result);
       if (result.message === "you're logged in!") {
-        localStorage.setItem("token", result.token);
-        localStorage.setItem("username", username);
+        localStorage.setItem("user-token", result.token);
+        localStorage.setItem("user-username", username);
         setToken(result.token);
-        setIsLoggedIn(true);
+        // setIsLoggedIn(true);
         navigate('/home')
         
       }

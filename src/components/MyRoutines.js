@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 const BASE_URL = "http://fitnesstrac-kr.herokuapp.com";
 
 const MyRoutines = (props) => {
-    const { routines, setRoutines, token, setToken, loggedIn, isLoggedIn, user} = props;
+    const { routines, setRoutines, token, setToken, user} = props;
     async function fetchMyRoutines() {
         try {
               const response = await fetch(

@@ -5,15 +5,11 @@ import { Link } from "react-router-dom";
 const BASE_URL = "http://fitnesstrac-kr.herokuapp.com";
 
 const Activities =(props) => {
-    const { activities, setActivities, isLoggedIn, token, setToken } = props;
-    // const [searchParams, setSearchParams] = useSearchParams();
+    const { activities, setActivities, token, setToken } = props;
 
     async function fetchActivities () {
         try {
             const response = await fetch(`${BASE_URL}/api/activities`, {
-                headers: {
-                  'Content-Type': 'application/json',
-                },
               });
             const result = await response.json();
             if (result.error) throw result.error;
