@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const BASE_URL = "http://fitnesstrac-kr.herokuapp.com";
 
 const Activities =(props) => {
-    const { activities, setActivities, isLoggedIn } = props;
+    const { activities, setActivities, isLoggedIn, token, setToken } = props;
     // const [searchParams, setSearchParams] = useSearchParams();
 
     async function fetchActivities () {
@@ -30,9 +30,9 @@ const Activities =(props) => {
     return (<>
         <h1 className="pageTitle">Activities List</h1>
         <div>
-            <div>
+            {token ? <div>
              <Link to="/createactivity"><button className="inputButton">Create Activity</button></Link>
-            </div>
+            </div> :null}
             <ul className="activityContainer">{
                 activities.map((activity) => {
                     return (<li className="singleActivity" key={activity.name}>
