@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import { useEffect, useState } from 'react';
 // import App from './App';
-import {Route, Routes, BrowserRouter, NavLink, Link, useNavigate} from "react-router-dom"
-
+import {Route, Routes, BrowserRouter, Link, useNavigate} from "react-router-dom"
+import "./index.css";
 import {
   Activities,
   Home,
@@ -12,6 +12,7 @@ import {
   MyRoutines,
   Register,
   Routines,
+  CreateActivity
 } from "./components"
 import { fetchUserData } from './api';
 
@@ -27,47 +28,44 @@ const [routines, setRoutines] = useState([]);
 const [username, setUsername] = useState("");
 const [password, setPassword] = useState("");
 
+async function fetchUser() {
+  const savedToken = localStorage.getItem(token)
+  if (savedToken) {
+      setToken(savedToken);
+      setIsLoggedIn(true);
+      const userData = await fetchUserData (savedToken);
+      console.log(userData);
+  };}
+
 useEffect(() => {
   fetchUser();
   }, []);
 
-  async function fetchUser() {
-    const savedToken = localStorage.getItem(token)
-    if (savedToken) {
-        setToken(savedToken);
-        setIsLoggedIn(true);
-        const userData = await fetchUserData (savedToken);
-        console.log(userData);
-    };}
-
   return (
       <BrowserRouter>
-        <nav>
-          <div>
-            <NavLink as={Link} to='/'>Home</NavLink>
-            <NavLink as={Link} to='/api/activities'>Activities</NavLink>
-            <NavLink as={Link} to='/api/routines'>Routines</NavLink>
+          <header className="headerContainer">
+            <h1 className="fitnessTitle">Fitness Tracker</h1>
+            <Link to='/home'>Home</Link>
+            <Link to='/activities'>Activities</Link>
+            <Link to='/routines'>Routines</Link>
             {
               isLoggedIn ? <button>Log Out</button> : <div>
-                <button><NavLink as={Link} to='/login'>Log In</NavLink></button>
-                <button><NavLink as={Link} to='/register'>Sign Up</NavLink></button>
-                </div>
-               
-               
+                <button><Link to='/'>Log In</Link></button>
+                <button><Link to='/register'>Sign Up</Link></button>
+                </div>  
             }
-          </div>
-        </nav>
+          </header>
         <Routes>
         <Route
             exact
-            path="/"
+            path="/home"
             element={
               <Home />
             }
           />
         <Route
             exact
-            path="/login"
+            path="/"
             element={
               <Login 
                 username={username}
@@ -99,7 +97,7 @@ useEffect(() => {
           />
           <Route
             exact
-            path="/api/activities"
+            path="activities"
             element={
               <Activities
                 activities={activities}
@@ -110,7 +108,7 @@ useEffect(() => {
           />
            <Route
             exact
-            path="/api/routines"
+            path="routines"
             element={
               <Routines
                 activities={activities}
@@ -133,8 +131,11 @@ useEffect(() => {
                 isLoggedIn={isLoggedIn}
                 setIsLoggedIn = {setIsLoggedIn}
               />
-            }
-          />         
+            }/>
+
+          {/* <Route exact path="/createactivity">
+            <CreateActivity />
+          </Route>        */}
           
         </Routes>
       </BrowserRouter>
