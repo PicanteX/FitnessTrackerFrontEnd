@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { fetchRegisterResults } from "../api";
 
-const SignUp = (props) => {
-  const { token, isLoggedIn, setToken, setIsLoggedIn, username, setUsername, password, setPassword} = props;
+const Register = (props) => {
+  const { token, setToken, username, setUsername, password, setPassword} = props;
   
   const userSubmit = async (event) => {
     event.preventDefault();
@@ -43,4 +43,4 @@ const SignUp = (props) => {
   );
 };
 
-export default SignUp;
+export default Register;

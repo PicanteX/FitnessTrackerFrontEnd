@@ -2,7 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import { useEffect, useState } from 'react';
-// import App from './App';
 import {Route, Routes, BrowserRouter, Link, useNavigate} from "react-router-dom"
 import "./index.css";
 import {
@@ -15,17 +14,21 @@ import {
   CreateActivity,
   CreateRoutine
 } from "./components"
+
 import { fetchUserData } from './api';
+
 export const TOKEN_STORAGE_KEY = "user-token";
-const savedToken = localStorage.getItem(TOKEN_STORAGE_KEY)
+export const USER_STORAGE_KEY = "user-username";
+const savedToken = localStorage.getItem(TOKEN_STORAGE_KEY);
+const savedUser = localStorage.getItem(USER_STORAGE_KEY);
 
 const App = () => {
 
 const [token, setToken] = useState(savedToken);
-const [isLoggedIn, setIsLoggedIn] = useState(false);
+const [username, setUsername] = useState(savedUser);
+// const [isLoggedIn, setIsLoggedIn] = useState(false);
 const [activities, setActivities] = useState([]);
 const [routines, setRoutines] = useState([]);
-const [username, setUsername] = useState("");
 const [password, setPassword] = useState("");
 const [goal, setGoal] = useState("");
 const [name, setName] = useState("");
@@ -81,8 +84,6 @@ const [user, setUser] = useState("");
                 setPassword={setPassword}
                 token={token}
                 setToken={setToken}
-                isLoggedIn={isLoggedIn}
-                setIsLoggedIn={setIsLoggedIn}
               />
             }
           />
@@ -97,8 +98,7 @@ const [user, setUser] = useState("");
                 setPassword={setPassword}
                 token={token}
                 setToken={setToken}
-                isLoggedIn={isLoggedIn}
-                setIsLoggedIn={setIsLoggedIn}
+
               />
             }
           />
@@ -109,7 +109,6 @@ const [user, setUser] = useState("");
               <Activities
                 activities={activities}
                 setActivities={setActivities}
-                isLoggedIn={isLoggedIn}
                 token = {token}
               />
             }
@@ -123,8 +122,6 @@ const [user, setUser] = useState("");
                 setActivities={setActivities}
                 routines={routines}
                 setRoutines={setRoutines}
-                isLoggedIn={isLoggedIn}
-                setIsLoggedIn = {setIsLoggedIn}
                 token={token}
               />
               
@@ -139,10 +136,6 @@ const [user, setUser] = useState("");
                 setActivities={setActivities}
                 routines={routines}
                 setRoutines={setRoutines}
-                isLoggedIn={isLoggedIn}
-                setIsLoggedIn = {setIsLoggedIn}
-                user = {user}
-                setUser = {setUsername}
                 token={token}
                 setToken={setToken}
               />
@@ -157,8 +150,6 @@ const [user, setUser] = useState("");
                 setActivities={setActivities}
                 routines={routines}
                 setRoutines={setRoutines}
-                isLoggedIn={isLoggedIn}
-                setIsLoggedIn = {setIsLoggedIn}
                 token={token}
               />
             }/>
@@ -169,21 +160,17 @@ const [user, setUser] = useState("");
                   setActivities={setActivities}
                   token={token}
                   setToken={setToken}
-                  isLoggedIn={isLoggedIn}
-                  setIsLoggedIn={setIsLoggedIn}
              />
             }/>     
 
-          {/* <Route exact path="/createroutine"
+          <Route exact path="/createroutine"
             element={<CreateRoutine
                   activities={activities}
                   setActivities={setActivities}
                   token={token}
                   setToken={setToken}
-                  isLoggedIn={isLoggedIn}
-                  setIsLoggedIn={setIsLoggedIn}
              />
-            }/>     */}
+            }/>    
           
         </Routes>
       </BrowserRouter>

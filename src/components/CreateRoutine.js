@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
+import { fetchLoginResults } from '../api';
 const BASE_URL = "http://fitnesstrac-kr.herokuapp.com";
 
 const CreateRoutine = (props) => {
@@ -12,7 +13,7 @@ const CreateRoutine = (props) => {
                         method: "POST",
                         headers: {
                               "Content-Type": "application/json",
-                              "Authorization": `Bearer ${token}`,
+                              Authorization : `Bearer ${token}`,
                         },
                         body: JSON.stringify({
                               name: name,
@@ -22,10 +23,9 @@ const CreateRoutine = (props) => {
                   }
                   );
 
-                  const resultError = await response.json();
-                  if (resultError.error) {
-                        alert(resultError.error);
-                  }
+                  const result = await response.json();
+                  return result;
+                  
             } catch (error) {
                   console.error(error);
             }
