@@ -1,4 +1,4 @@
-export const BASE_URL = "http://fitnesstrac-kr.herokuapp.com";
+export const BASE_URL = "https://fitnesstrac-kr.herokuapp.com";
 
 export async function fetchRegisterResults(username, password) {
   console.log(username, password);
@@ -62,7 +62,7 @@ export async function fetchUserData(token) {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
+          "Authorization": `Bearer ${token}`,
         },
       }
     );
@@ -73,25 +73,49 @@ export async function fetchUserData(token) {
   }
 }
 
-// export const newActivity = async (
-//   name,
-//   description
-// ) => {
-//   const token = localStorage.getItem('token')
-//   const result = await fetch(`${BASE_URL}/api/activities`, {
-//     method: "POST",
+export const fetchPublicRoutinesByUser = async (username) => {
+  await fetch(`${BASE_URL}/api/users/${username}/routines`, {
+    headers: {
+      "Content-Type": "application/json",
+    },
+  }) .then(response => response.json())
+  .then(result => {
+    console.log(result)
+    return result
+  })
+  .catch(console.error);
+};
+
+// export const updateMyRoutine = async (token, routineId) => {
+//   const response = await fetch (`${BASE_URL}/api/routines/${routineId}`, {
+//     method: "PATCH",
 //     headers: {
-//       "Content-Type": "application/json",
-//       'Authorization': `Bearer ${token}`,
+//       'Content-Type': 'application/json',
+//       'Authorization': `Bearer ${token}`
 //     },
 //     body: JSON.stringify({
-//         name,
-//         description
-//     }),
-//   });
-//   const data = await result.json();
-//   console.log(data);
-
-//   return data;
+//       name: name,
+//       goal: goal
+//     })
+//   }).then(response = response.json())
+//   .then(result => {
+//     console.log(result);
+//   })
+//   .catch(console.error)
 // };
+
+export const deleteUserRoutine = async (token, routineId) => {
+  await fetch(`${BASE_URL}/api/routines/${routineId}`, {
+    method: "DELETE",
+    headers: {
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${token}`
+    }
+  }).then(response => response.json())
+  .then(result => {
+    console.log(result);
+  })
+  .catch(console.error);
+  };
+
 

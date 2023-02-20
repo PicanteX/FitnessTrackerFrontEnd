@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Routines.css";
-const BASE_URL = "http://fitnesstrac-kr.herokuapp.com";
+import { fetchPublicRoutinesByUser, deleteUserRoutine, updateMyRoutine } from "../api";
+const BASE_URL = "https://fitnesstrac-kr.herokuapp.com";
 
 const Routines =(props) => {
     const { routines, setRoutines } = props;
@@ -43,6 +44,7 @@ const Routines =(props) => {
 
     return (<>
         <h1 className="pageTitle">Routines List</h1>
+          <Link className="newRoutineButton" to="/createroutine">Create new Routine</Link>
             <ul className="routineContainer">{
                 routines.map((routine) => {
                     return (<li className = "singleRoutine"key={routine.name}>

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from "react-router-dom";
-const BASE_URL = "http://fitnesstrac-kr.herokuapp.com";
+const BASE_URL = "https://fitnesstrac-kr.herokuapp.com";
 
 const CreateActivity = (props) => {
       const { token, name , setName, description, setDescription }= props;
