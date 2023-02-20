@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ReactDOM } from "react-dom";
 import "./Activities.css";
 import { Link } from "react-router-dom";
-const BASE_URL = "http://fitnesstrac-kr.herokuapp.com";
+const BASE_URL = "https://fitnesstrac-kr.herokuapp.com";
 
 const Activities =(props) => {
     const { activities, setActivities, token, setToken } = props;
